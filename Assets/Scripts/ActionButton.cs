@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 
 public class ActionButton : MonoBehaviour
 {
+    private GameManager gameManager;
     private int m_actionNumber;
     public int aNumber;
     private TextMeshProUGUI buttonText;
@@ -32,6 +33,7 @@ public class ActionButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager= GameObject.Find("GameManager").GetComponent<GameManager>();
         buttonText= GetComponentInChildren<TextMeshProUGUI>();
         actionNumber = aNumber;
         monkey = GameObject.Find("Player").GetComponent<Monkey>();
@@ -43,7 +45,14 @@ public class ActionButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameManager.isPlayerTurn)
+        {
+            button.interactable = true;
+        }
+        else
+        {
+            button.interactable = false;
+        }
     }
     public void SetAction()
     {

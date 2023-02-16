@@ -9,12 +9,15 @@ public abstract class Monkey : MonoBehaviour
     public float playerMaxLife = 10;
     public int playerDamage = 10;
     public int playerDefence = 10;
+    public int playerCritChance = 30;
     public int action;
     public string firstAbility;
     public string secondAbility;
     public string thirdAbility;
     public string fourthAbility;
-    
+    public int critMultiplier;
+    public Enemy enemy;
+    public GameManager gameManager;
     void Start()
     {
         
@@ -63,7 +66,24 @@ public abstract class Monkey : MonoBehaviour
     {
         healthbar = GameObject.Find("HealthBar").GetComponent<HealtBar>();
     }
-    
+    public void SetEnemy()
+    {
+        enemy = GameObject.Find("diaulo").GetComponent<Enemy>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+    public float CritCalculator()
+    {
+        int critRandom = Random.Range(0, 100);
+        if (critRandom <= playerCritChance)
+        {
+            critMultiplier = 2;
+        }
+        else
+        {
+            critMultiplier= 1;
+        }
+        return critMultiplier;
+    }
 
   
      

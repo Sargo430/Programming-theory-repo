@@ -15,6 +15,7 @@ public class MonkeyMage : Monkey
     }
     void Start()
     {
+        SetEnemy();
         HealthBar();
         ClassStats();
         AbilityNames();
@@ -35,19 +36,34 @@ public class MonkeyMage : Monkey
     }
     protected override void FirstAction()
     {
-        
+        enemy.enemyHealth -= (playerDamage * CritCalculator() - enemy.enemyDefence) ;
+        gameManager.PlayerTurnEnd();
         
     }
     protected override void SecondAction()
     {
-        
+        playerDefence += 3;
+        gameManager.PlayerTurnEnd();
     }
     protected override void ThirdAction()
     {
-        
+        gameManager.PlayerTurnEnd();
     }
     protected override void FourthAction()
     {
-        
+        if(playerLife < playerMaxLife)
+        {
+            playerLife += 5;
+            if(playerLife > playerMaxLife)
+            {
+                playerLife= playerMaxLife;
+            }
+        }
+        else
+        {
+            Debug.Log("You are already fully healed");
+        }
+        gameManager.PlayerTurnEnd();
+
     }
 }
