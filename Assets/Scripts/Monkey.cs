@@ -10,12 +10,12 @@ public abstract class Monkey : MonoBehaviour
     public int playerDamage = 10;
     public int playerDefence = 10;
     public int playerCritChance = 30;
-    public int action;
-    public string firstAbility;
-    public string secondAbility;
-    public string thirdAbility;
-    public string fourthAbility;
-    public int critMultiplier;
+    public int action { get; set; }
+    public string firstAbility { get; set; }
+    public string secondAbility { get; set; }
+    public string thirdAbility { get; set; }
+    public string fourthAbility { get; set; }
+    public int critMultiplier { get; set; }
     public Enemy enemy;
     public GameManager gameManager;
     void Start()

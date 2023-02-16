@@ -36,7 +36,16 @@ public class MonkeyMage : Monkey
     }
     protected override void FirstAction()
     {
-        enemy.enemyHealth -= (playerDamage * CritCalculator() - enemy.enemyDefence) ;
+        if (!enemy.ignoreDamage)
+        {
+            enemy.enemyHealth -= (playerDamage * CritCalculator() - enemy.enemyDefence);
+            
+        }
+        else
+        {
+            enemy.ignoreDamage = false;
+        }
+        
         gameManager.PlayerTurnEnd();
         
     }
@@ -46,7 +55,9 @@ public class MonkeyMage : Monkey
         gameManager.PlayerTurnEnd();
     }
     protected override void ThirdAction()
+
     {
+        gameManager.isEnemyTurnSkipped = true;
         gameManager.PlayerTurnEnd();
     }
     protected override void FourthAction()

@@ -45,11 +45,15 @@ public class ActionButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.isPlayerTurn)
+        if (gameManager.isPlayerTurn && !gameManager.isGameOver)
         {
             button.interactable = true;
         }
         else
+        {
+            button.interactable = false;
+        }
+        if(gameManager.isGameOver)
         {
             button.interactable = false;
         }

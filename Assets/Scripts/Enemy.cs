@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     private GameManager gameManager;
     private Monkey monkey;
     private int enemyDamageDealth;
+    public bool ignoreDamage;
     void Start()
     {
         monkey = GameObject.Find("Player").GetComponent<Monkey>();
@@ -65,7 +66,7 @@ public class Enemy : MonoBehaviour
                 }
                 case 3:
                 {
-                    Debug.Log("3");
+                    ignoreDamage= true;
                     gameManager.EnemyTurnEnd();
                     return;
                 }
