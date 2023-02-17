@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public abstract class Monkey : MonoBehaviour
 {
     public HealtBar healthbar;
@@ -15,7 +16,7 @@ public abstract class Monkey : MonoBehaviour
     public string secondAbility { get; set; }
     public string thirdAbility { get; set; }
     public string fourthAbility { get; set; }
-    public int critMultiplier { get; set; }
+    public int critMultiplier  { get; set; }
     public Enemy enemy;
     public GameManager gameManager;
     void Start()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,11 +15,18 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI fightResultText;
     public GameObject gameOverScreen;
+    private MainManager mainManager;
+    public GameObject[] clasees;
+    private GameObject player;
+    
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        isGameOver= false;
+        mainManager = GameObject.Find("MainManager").GetComponent<MainManager>();
+        ClassSelected();
+        isGameOver = false;
+        
         monkey = GameObject.Find("Player").GetComponent<Monkey>();
         enemy = GameObject.Find("diaulo").GetComponent<Enemy>();
         isPlayerTurn = true;
@@ -29,38 +37,32 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isPlayerTurn)
+        if (!isGameOver)
         {
-            PlayerTurn();
-        }
-        else
-        {
-            if (!isEnemyTurnSkipped) 
+            if (isPlayerTurn)
             {
-                EnemyTurn();
-                
+                CheckGameOver();
+                PlayerTurn();
             }
             else
             {
-                EnemyTurnEnd();
-                isEnemyTurnSkipped= false;
+                CheckGameOver();
+                if (!isEnemyTurnSkipped)
+                {
+
+                    EnemyTurn();
+
+                }
+                else
+                {
+
+                    EnemyTurnEnd();
+                    isEnemyTurnSkipped = false;
+                }
+
             }
-            
         }
-        if (monkey.playerLife <= 0 )
-        {
-            gameOverText.color = Color.red;
-            fightResultText.color = Color.red;
-            fightResultText.text = "You lose";
-            GameOver();
-        }
-        if(enemy.enemyHealth<= 0 )
-        {
-            gameOverText.color = Color.green;
-            fightResultText.color = Color.green;
-            fightResultText.text = "You win";
-            GameOver();
-        }
+        
     }
     public void PlayerTurn()
     {
@@ -84,5 +86,55 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         gameOverScreen.SetActive(true);
+    }
+    public void ClassSelected()
+    {
+        switch (mainManager.classSelected)
+        {
+            case 0:
+                {
+                    Instantiate(clasees[mainManager.classSelected]);
+                    player = GameObject.Find("Mage(Clone)");
+                    player.name = "Player";
+                    return;
+                }
+            case 1:
+                {
+                    Instantiate(clasees[mainManager.classSelected]);
+                    player = GameObject.Find("Ranger(Clone)");
+                    player.name = "Player";
+                    return;
+                }
+            case 2:
+                {
+                    Instantiate(clasees[mainManager.classSelected]);
+                    player = GameObject.Find("Warrior(Clone)");
+                    player.name = "Player";
+                    return;
+                }
+        }
+    }
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    private void CheckGameOver()
+    {
+        if (monkey.playerLife <= 0)
+        {
+            isGameOver= true;
+            gameOverText.color = Color.red;
+            fightResultText.color = Color.red;
+            fightResultText.text = "You lose";
+            GameOver();
+        }
+        if (enemy.enemyHealth <= 0)
+        {
+            isGameOver= true;
+            gameOverText.color = Color.green;
+            fightResultText.color = Color.green;
+            fightResultText.text = "You win";
+            GameOver();
+        }
     }
 }

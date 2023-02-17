@@ -1,17 +1,16 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonkeyMage : Monkey
+public class MonkeyRanger : Monkey
 {
-
     protected override void ClassStats()
     {
-        playerLife = 10;
-        playerMaxLife = 10;
-        playerDefence = 5;
-        playerDamage = 10;
+        playerLife = 15;
+        playerMaxLife = 15;
+        playerDefence = 7;
+        playerDamage = 8;
+        playerCritChance = 75;
     }
     void Awake()
     {
@@ -19,7 +18,7 @@ public class MonkeyMage : Monkey
         SetEnemy();
         HealthBar();
         ClassStats();
-        
+
     }
 
     // Update is called once per frame
@@ -29,46 +28,46 @@ public class MonkeyMage : Monkey
     }
     protected override void AbilityNames()
     {
-        firstAbility = "Machete Rain";
-        secondAbility = "Energy shield";
-        thirdAbility = "Vine binding";
-        fourthAbility = "Health wish";
-        
+        firstAbility = "Machete Arrow";
+        secondAbility = "Head shot";
+        thirdAbility = "Hunter instict";
+        fourthAbility = "Medical Herbs";
+
     }
     protected override void FirstAction()
     {
         if (!enemy.ignoreDamage)
         {
-            enemy.enemyHealth -= (playerDamage * CritCalculator() - enemy.enemyDefence);
-            
+            enemy.enemyHealth -= playerDamage * CritCalculator() - enemy.enemyDefence;
+
         }
         else
         {
             enemy.ignoreDamage = false;
         }
-        
+
         gameManager.PlayerTurnEnd();
-        
+
     }
     protected override void SecondAction()
     {
-        playerDefence += 3;
+        enemy.enemyHealth-= playerDamage * 2;
         gameManager.PlayerTurnEnd();
     }
     protected override void ThirdAction()
 
     {
-        gameManager.isEnemyTurnSkipped = true;
+        playerDamage+= 5;
         gameManager.PlayerTurnEnd();
     }
     protected override void FourthAction()
     {
-        if(playerLife < playerMaxLife)
+        if (playerLife < playerMaxLife)
         {
             playerLife += 5;
-            if(playerLife > playerMaxLife)
+            if (playerLife > playerMaxLife)
             {
-                playerLife= playerMaxLife;
+                playerLife = playerMaxLife;
             }
         }
         else
