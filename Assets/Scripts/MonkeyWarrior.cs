@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonkeyWarrior : Monkey
+public class MonkeyWarrior : Monkey//INHERITANCE
 {
     // Start is called before the first frame update
     protected override void ClassStats()
@@ -27,7 +27,7 @@ public class MonkeyWarrior : Monkey
     {
         healthbar.UpdateHealthBar();
     }
-    protected override void AbilityNames()
+    protected override void AbilityNames()// POLYMORPHISM
     {
         firstAbility = "Machete cut";
         secondAbility = "WarCry";
@@ -35,7 +35,7 @@ public class MonkeyWarrior : Monkey
         fourthAbility = "Endure";
 
     }
-    protected override void FirstAction()
+    protected override void FirstAction()// POLYMORPHISM
     {
         if (!enemy.ignoreDamage)
         {
@@ -50,13 +50,13 @@ public class MonkeyWarrior : Monkey
         gameManager.PlayerTurnEnd();
 
     }
-    protected override void SecondAction()
+    protected override void SecondAction()// POLYMORPHISM
     {
         playerDefence += 1;
         playerDamage+= 2;
         gameManager.PlayerTurnEnd();
     }
-    protected override void ThirdAction()
+    protected override void ThirdAction()// POLYMORPHISM
 
     {
         if (!enemy.ignoreDamage)
@@ -71,7 +71,7 @@ public class MonkeyWarrior : Monkey
         }  
         gameManager.PlayerTurnEnd();
     }
-    protected override void FourthAction()
+    protected override void FourthAction()// POLYMORPHISM
     {
         if (playerLife < playerMaxLife)
         {

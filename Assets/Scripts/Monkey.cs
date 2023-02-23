@@ -11,12 +11,12 @@ public abstract class Monkey : MonoBehaviour
     public int playerDamage = 10;
     public int playerDefence = 10;
     public int playerCritChance = 30;
-    public int action { get; set; }
-    public string firstAbility { get; set; }
-    public string secondAbility { get; set; }
-    public string thirdAbility { get; set; }
-    public string fourthAbility { get; set; }
-    public int critMultiplier  { get; set; }
+    public int action { get; set; } //ENCAPSULATION
+    public string firstAbility { get; set; }//ENCAPSULATION
+    public string secondAbility { get; set; }//ENCAPSULATION
+    public string thirdAbility { get; set; }//ENCAPSULATION
+    public string fourthAbility { get; set; }//ENCAPSULATION
+    public int critMultiplier  { get; set; }//ENCAPSULATION
     public Enemy enemy;
     public GameManager gameManager;
     void Start()
@@ -31,7 +31,7 @@ public abstract class Monkey : MonoBehaviour
     }
     protected abstract void ClassStats();
     
-    public  void PlayerActions(int action)
+    public  void PlayerActions(int action)//ABSTRACTION
     {
         switch (action)
         {
@@ -58,21 +58,21 @@ public abstract class Monkey : MonoBehaviour
                 }
         }
     }
-    protected abstract void AbilityNames();
-    protected abstract void FirstAction();
-    protected abstract void SecondAction();
-    protected abstract void ThirdAction();
-    protected abstract void FourthAction();
-    public void HealthBar()
+    protected abstract void AbilityNames();//ABSTRACTION
+    protected abstract void FirstAction();//ABSTRACTION
+    protected abstract void SecondAction();//ABSTRACTION
+    protected abstract void ThirdAction();//ABSTRACTION
+    protected abstract void FourthAction();//ABSTRACTION
+    public void HealthBar()//ABSTRACTION
     {
         healthbar = GameObject.Find("HealthBar").GetComponent<HealtBar>();
     }
-    public void SetEnemy()
+    public void SetEnemy()//ABSTRACTION
     {
         enemy = GameObject.Find("diaulo").GetComponent<Enemy>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
-    public float CritCalculator()
+    public float CritCalculator()//ABSTRACTION
     {
         int critRandom = Random.Range(0, 100);
         if (critRandom <= playerCritChance)

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonkeyMage : Monkey
+public class MonkeyMage : Monkey //INHERITANCE
 {
 
     protected override void ClassStats()
@@ -27,7 +27,7 @@ public class MonkeyMage : Monkey
     {
         healthbar.UpdateHealthBar();
     }
-    protected override void AbilityNames()
+    protected override void AbilityNames()// POLYMORPHISM
     {
         firstAbility = "Machete Rain";
         secondAbility = "Energy shield";
@@ -35,7 +35,7 @@ public class MonkeyMage : Monkey
         fourthAbility = "Health wish";
         
     }
-    protected override void FirstAction()
+    protected override void FirstAction()// POLYMORPHISM
     {
         if (!enemy.ignoreDamage)
         {
@@ -50,18 +50,18 @@ public class MonkeyMage : Monkey
         gameManager.PlayerTurnEnd();
         
     }
-    protected override void SecondAction()
+    protected override void SecondAction()// POLYMORPHISM
     {
         playerDefence += 3;
         gameManager.PlayerTurnEnd();
     }
-    protected override void ThirdAction()
+    protected override void ThirdAction()// POLYMORPHISM
 
     {
         gameManager.isEnemyTurnSkipped = true;
         gameManager.PlayerTurnEnd();
     }
-    protected override void FourthAction()
+    protected override void FourthAction()// POLYMORPHISM
     {
         if(playerLife < playerMaxLife)
         {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonkeyRanger : Monkey
+public class MonkeyRanger : Monkey//INHERITANCE
 {
     protected override void ClassStats()
     {
@@ -26,7 +26,7 @@ public class MonkeyRanger : Monkey
     {
         healthbar.UpdateHealthBar();
     }
-    protected override void AbilityNames()
+    protected override void AbilityNames()// POLYMORPHISM
     {
         firstAbility = "Machete Arrow";
         secondAbility = "Head shot";
@@ -34,7 +34,7 @@ public class MonkeyRanger : Monkey
         fourthAbility = "Medical Herbs";
 
     }
-    protected override void FirstAction()
+    protected override void FirstAction()// POLYMORPHISM
     {
         if (!enemy.ignoreDamage)
         {
@@ -49,18 +49,18 @@ public class MonkeyRanger : Monkey
         gameManager.PlayerTurnEnd();
 
     }
-    protected override void SecondAction()
+    protected override void SecondAction()// POLYMORPHISM
     {
         enemy.enemyHealth-= playerDamage * 2;
         gameManager.PlayerTurnEnd();
     }
-    protected override void ThirdAction()
+    protected override void ThirdAction()// POLYMORPHISM
 
     {
         playerDamage+= 5;
         gameManager.PlayerTurnEnd();
     }
-    protected override void FourthAction()
+    protected override void FourthAction()// POLYMORPHISM
     {
         if (playerLife < playerMaxLife)
         {
